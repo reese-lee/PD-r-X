@@ -5,14 +5,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
 $(document).ready(function() {
-  let findDoctor = new FindDoctor;
-  let promise = findDoctor.findDrByMalady(city);
+  $('#maladyType').click(function(){
+    let name =  $('#name').val();
+    $('#name').val("");
 
-  promise.then(function(response) {
-    let body = JSON.parse(response);
-    $('.showMalady').text(`The doctors who treat ${malady} are: ${body.main.showDoctors}%`);
-    // $('.showTemp').text(`The temperature in Kelvins is ${body.main.temp} degrees.`);
-  }, function(error) {
-    $('.showErrors').text(`There was an error processing your request: ${error.message}`);
+    let findDoctor = new FindDoctor;
+    let promise = findDoctor.findDrByMalady(name);
+
+    promise.then(function(response) {
+      let body = JSON.parse(response);
+      $('.showMalady').text(`The doctors: ${body.data.name}`);
+      // $('.showTemp').text(`The temperature in Kelvins is ${body.main.temp} degrees.`);
+    }, function(error) {
+      $('.showErrors').text(`There was an error processing your request: ${error.message}`);
   });
+});
 });
