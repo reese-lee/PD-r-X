@@ -27,18 +27,14 @@ $(document).ready(function() {
 
         $('#showDoctors').append(`${data.profile.first_name} ${data.profile.last_name}<br>
 
-          Specialty: ${data.specialties[0].description}<br>
+          ${data.specialties[0].description}<br>
           Address: ${data.practices[0].visit_address.street}<br>
           ${data.practices[0].visit_address.city}, ${data.practices[0].visit_address.state} ${data.practices[0].visit_address.zip}<br>
-          ${data.practices[0].phones[0].number}<br>
+          Phone Number: ${data.practices[0].phones[0].number}<br>
           Website: ${data.profile.website}<br>
           Accepting new patients: ${data.practices[0].accepts_new_patients}<br><hr><br>`)
         }, function (error) {
           $('#error').text(`There was an error processing your request: ${error.message}`)
-          //   $('#showDoctors').text(`The doctors who treat ${body.data.malady} are: ${body.data.name}`);
-          //   // $('.showTemp').text(`The temperature in Kelvins is ${body.main.temp} degrees.`);
-          // }, function(error) {
-          // $('#errors').text(`There was an error processing your request: ${error.message}`);
         });
       });
 
